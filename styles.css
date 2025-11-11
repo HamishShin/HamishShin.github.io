@@ -581,6 +581,7 @@ section{
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  background-image: url(istockphoto-1124532572-612x612.jpg);
 }
 .about-filler.hidden{ opacity: 0; pointer-events: none; visibility: hidden; }
 

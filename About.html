@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>About</title>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="container">
+				<div class="header-content">
+					<div class="header-left">
+						<h1 class="logo">Hamish Shin</h1>
+						<nav>
+							<a href="About.html">About</a>
+							<a href="Contact.html">Contact</a>
+							<a href="home.html">Home</a>
+						</nav>
+					</div>
+					<div id="blackjack-game" class="blackjack-container">
+						<div class="bj-content">
+							<div class="bj-title">BlackJack</div>
+							<div class="bj-hands">
+								<div class="bj-hand">
+									<span class="bj-label">P:</span>
+									<div id="bj-player-cards" class="bj-cards"></div>
+								</div>
+								<div class="bj-hand">
+									<span class="bj-label">D:</span>
+									<div id="bj-dealer-cards" class="bj-cards"></div>
+								</div>
+							</div>
+							<div class="bj-controls">
+								<div class="bj-wallet">$<span id="bj-wallet">100</span></div>
+								<div class="bj-bet-area">
+									<span class="bj-label">Bet:</span>
+									<input type="text" id="bj-bet-amount" class="bj-input" value="10" size="3">
+								</div>
+								<button id="bj-hit" class="bj-btn">Hit</button>
+								<button id="bj-stand" class="bj-btn">Stand</button>
+								<button id="bj-new-game" class="bj-btn new-game">Deal</button>
+							</div>
+						</div>
+						<button id="bj-reset" class="bj-btn reset-btn">Start Over</button>
+					</div>
+				</div>
+				<button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+			</div>
+		</header>
+
+		<!-- Bottom-right image placeholder - outside containers to ensure fixed positioning -->
+		<div id="aboutFiller" class="about-filler" role="img" aria-label="About image placeholder">Image placeholder</div>
+		
+		<main class="container about-page page-content">
+			<article class="about-article" aria-live="polite">
+				<!-- About content -->
+				<h2 class="about-title">About Me</h2>
+				<p>Welcome to my portfolio! I'm a passionate developer who loves creating engaging digital experiences.</p>
+				<p>With expertise in modern web technologies, I focus on building clean, efficient, and user-friendly applications. My work combines technical skill with creative problem-solving to deliver impactful solutions.</p>
+				<p>I'm constantly learning and exploring new technologies to stay at the forefront of web development. Whether it's front-end design, back-end architecture, or full-stack solutions, I approach each project with enthusiasm and attention to detail.</p>
+				<p>When I'm not coding, you can find me exploring new frameworks, contributing to open-source projects, or sharing knowledge with the developer community.</p>
+				<p>Feel free to explore my projects and reach out if you'd like to collaborate or discuss opportunities.</p>
+			</article>
+		</main>
+
+		<footer class="site-footer">
+			<div class="container">© <span id="year"></span> Hamish Shin</div>
+		</footer>
+
+			<script>
+				// Reveal page content with GSAP animation
+				(function(){
+					function reveal(){
+						var el = document.querySelector('.page-content');
+						if(!el) return;
+						
+						// Ensure content is visible by default
+						el.style.opacity = '1';
+						el.style.visibility = 'visible';
+						
+						if(typeof window.gsap !== 'undefined'){
+							var gs = window.gsap;
+							gs.fromTo(el, 
+								{opacity: 0, y: 20}, 
+								{opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'}
+							);
+						} else {
+							el.classList.add('visible');
+						}
+					}
+					if(document.readyState === 'loading'){
+						document.addEventListener('DOMContentLoaded', reveal);
+					} else { reveal(); }
+				})();
+
+				// Position the about filler box at bottom right with GSAP animation
+				(function(){
+					function positionFiller(){
+						var filler = document.getElementById('aboutFiller');
+						if(!filler) return;
+						
+						// Ensure it's fixed to viewport and stays in place
+						filler.style.position = 'fixed';
+						filler.style.bottom = '20px';
+						filler.style.right = '20px';
+						filler.style.top = 'auto';
+						filler.style.left = 'auto';
+						filler.style.opacity = '1';
+						filler.style.visibility = 'visible';
+						filler.style.zIndex = '1000';
+						
+						// Animate in with GSAP
+						if(typeof window.gsap !== 'undefined'){
+							var gs = window.gsap;
+							gs.set(filler, {opacity: 0, scale: 0.8, rotation: -5});
+							gs.to(filler, 
+								{opacity: 1, scale: 1, rotation: 0, duration: 1, ease: 'back.out(1.7)', delay: 0.3}
+							);
+						} else {
+							filler.style.opacity = '1';
+						}
+						
+						// Keep it fixed on scroll - update position on scroll
+						function updatePosition(){
+							filler.style.position = 'fixed';
+							filler.style.bottom = '20px';
+							filler.style.right = '20px';
+						}
+						
+						window.addEventListener('scroll', updatePosition);
+						window.addEventListener('resize', updatePosition);
+					}
+
+					if(document.readyState === 'loading'){
+						document.addEventListener('DOMContentLoaded', positionFiller);
+					} else { positionFiller(); }
+				})();
+				
+				// Animate about content with GSAP
+				(function(){
+					function animateContent(){
+						var title = document.querySelector('.about-title');
+						var paragraphs = document.querySelectorAll('.about-article p');
+						
+						// Ensure content is visible by default
+						if(title){
+							title.style.opacity = '1';
+							title.style.visibility = 'visible';
+						}
+						paragraphs.forEach(function(p){
+							p.style.opacity = '1';
+							p.style.visibility = 'visible';
+						});
+						
+						if(typeof window.gsap === 'undefined') return;
+						var gs = window.gsap;
+						
+						if(title){
+							gs.fromTo(title, 
+								{opacity: 0, y: 30}, 
+								{opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.2}
+							);
+						}
+						
+						if(paragraphs.length){
+							gs.fromTo(paragraphs, 
+								{opacity: 0, x: -20}, 
+								{opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out', delay: 0.4}
+							);
+						}
+					}
+					
+					if(document.readyState === 'loading'){
+						document.addEventListener('DOMContentLoaded', animateContent);
+					} else { 
+						setTimeout(animateContent, 100);
+					}
+				})();
+			</script>
+			<script src="blackjack.js" defer></script>
+		<script src="script.js" defer></script>
+	</body>
+</html>

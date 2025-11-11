@@ -1,0 +1,386 @@
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Home</title>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<link href="styles.css" rel="stylesheet" />
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="container">
+				<div class="header-content">
+					<div class="header-left">
+						<h1 class="logo">Hamish Shin</h1>
+						<nav>
+							<a href="About.html">About</a>
+							<a href="Contact.html">Contact</a>
+							<a href="home.html">Home</a>
+						</nav>
+					</div>
+					<div id="blackjack-game" class="blackjack-container">
+						<div class="bj-content">
+							<div class="bj-title">BlackJack</div>
+							<div class="bj-hands">
+								<div class="bj-hand">
+									<span class="bj-label">P:</span>
+									<div id="bj-player-cards" class="bj-cards"></div>
+								</div>
+								<div class="bj-hand">
+									<span class="bj-label">D:</span>
+									<div id="bj-dealer-cards" class="bj-cards"></div>
+								</div>
+							</div>
+							<div class="bj-controls">
+								<div class="bj-wallet">$<span id="bj-wallet">100</span></div>
+								<div class="bj-bet-area">
+									<span class="bj-label">Bet:</span>
+									<input type="text" id="bj-bet-amount" class="bj-input" value="10" size="3">
+								</div>
+								<button id="bj-hit" class="bj-btn">Hit</button>
+								<button id="bj-stand" class="bj-btn">Stand</button>
+								<button id="bj-new-game" class="bj-btn new-game">Deal</button>
+							</div>
+						</div>
+						<button id="bj-reset" class="bj-btn reset-btn">Start Over</button>
+					</div>
+				</div>
+				<button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+			</div>
+		</header>
+
+		<main class="container page-content">
+			<!-- Animated Background Elements -->
+			<div class="animated-bg">
+				<div class="floating-circle circle-1"></div>
+				<div class="floating-circle circle-2"></div>
+				<div class="floating-circle circle-3"></div>
+				<div class="floating-circle circle-4"></div>
+			</div>
+			
+			<!-- Hero Section -->
+			<section class="hero">
+				<div class="hero-content">
+					<h2 class="hero-title" data-split-text>Hi — I'm Hamish Shin</h2>
+					<p class="hero-subtitle">Full-Stack Developer & Creative Problem Solver</p>
+				</div>
+			</section>
+
+			<!-- Skills Section -->
+			<section class="skills-section">
+				<h3 class="section-title">Technologies I Work With</h3>
+				<div class="skills-grid">
+					<div class="skill-card" data-skill="JavaScript">
+						<div class="skill-icon">JS</div>
+						<div class="skill-name">JavaScript</div>
+						<div class="skill-level">
+							<div class="skill-bar" data-level="0"></div>
+						</div>
+					</div>
+					<div class="skill-card" data-skill="Python">
+						<div class="skill-icon">PY</div>
+						<div class="skill-name">Python</div>
+						<div class="skill-level">
+							<div class="skill-bar" data-level="5"></div>
+						</div>
+					</div>
+					<div class="skill-card" data-skill="React">
+						<div class="skill-icon">⚛</div>
+						<div class="skill-name">React</div>
+						<div class="skill-level">
+							<div class="skill-bar" data-level="0"></div>
+						</div>
+					</div>
+					<div class="skill-card" data-skill="Node">
+						<div class="skill-icon">N</div>
+						<div class="skill-name">Node.js</div>
+						<div class="skill-level">
+							<div class="skill-bar" data-level="0"></div>
+						</div>
+					</div>
+					<div class="skill-card" data-skill="CSS">
+						<div class="skill-icon">CSS</div>
+						<div class="skill-name">CSS/SCSS</div>
+						<div class="skill-level">
+							<div class="skill-bar" data-level="10"></div>
+						</div>
+					</div>
+					<div class="skill-card" data-skill="HTML">
+						<div class="skill-icon">HTML</div>
+						<div class="skill-name">HTML5</div>
+						<div class="skill-level">
+							<div class="skill-bar" data-level="10"></div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Projects Section -->
+			<section class="projects-section">
+				<h3 class="section-title">Featured Projects</h3>
+				<div class="projects-grid">
+					<div class="project-card">
+						<div class="project-glow"></div>
+						<div class="project-number">01</div>
+						<h4 class="project-title">Interactive Portfolio</h4>
+						<p class="project-desc">A dynamic portfolio website featuring GSAP animations, interactive elements, and a fully functional BlackJack game embedded in the header.</p>
+						<div class="project-tags">
+							<span class="tag">HTML</span>
+							<span class="tag">CSS</span>
+							<span class="tag">JavaScript</span>
+							<span class="tag">GSAP</span>
+						</div>
+					</div>
+					<div class="project-card">
+						<div class="project-glow"></div>
+						<div class="project-number">02</div>
+						<h4 class="project-title">Web Application</h4>
+						<p class="project-desc">Modern web application built with React and Node.js, featuring real-time updates and responsive design.</p>
+						<div class="project-tags">
+							<span class="tag">React</span>
+							<span class="tag">Node.js</span>
+							<span class="tag">MongoDB</span>
+						</div>
+					</div>
+					<div class="project-card">
+						<div class="project-glow"></div>
+						<div class="project-number">03</div>
+						<h4 class="project-title">Data Visualization</h4>
+						<p class="project-desc">Interactive data visualization dashboard using Python and modern charting libraries for real-time analytics.</p>
+						<div class="project-tags">
+							<span class="tag">Python</span>
+							<span class="tag">D3.js</span>
+							<span class="tag">Data Science</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Stats Section -->
+			<section class="stats-section">
+				<div class="stat-item">
+					<div class="stat-number" data-target="0">0</div>
+					<div class="stat-label">Projects Completed</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-number" data-target="0">0</div>
+					<div class="stat-label">Years Experience</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-number" data-target="0">0</div>
+					<div class="stat-label">Happy Clients</div>
+				</div>
+				<div class="stat-item">
+					<div class="stat-number" data-target="0">0</div>
+					<div class="stat-label">Technologies</div>
+				</div>
+			</section>
+
+			<!-- CTA Section -->
+			<section class="cta-section">
+				<div class="cta-content">
+					<h3 class="cta-title">Let's Build Something Amazing Together</h3>
+					<p class="cta-text">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+					<a href="Contact.html" class="cta-button">Get In Touch</a>
+				</div>
+			</section>
+		</main>
+
+		<footer class="site-footer">
+			<div class="container">© <span id="year"></span> Hamish Shin</div>
+		</footer>
+
+			<script>
+			// Epic GSAP Animations for Home Page
+			(function(){
+				function initAnimations(){
+					if(typeof window.gsap === 'undefined') {
+						// Fallback if GSAP not loaded
+						var el = document.querySelector('.page-content');
+						if(el) el.classList.add('visible');
+						return;
+					}
+					
+					var gs = window.gsap;
+					var tl = gs.timeline();
+					
+					// Animated background circles
+					var circles = document.querySelectorAll('.floating-circle');
+					circles.forEach(function(circle, i){
+						gs.set(circle, {opacity: 0, scale: 0});
+						gs.to(circle, {
+							opacity: 0.6,
+							scale: 1,
+							duration: 1.5,
+							ease: 'power2.out',
+							delay: i * 0.2
+						});
+						gs.to(circle, {
+							y: '+=30',
+							x: '+=20',
+							rotation: 360,
+							duration: 4 + i,
+							repeat: -1,
+							yoyo: true,
+							ease: 'sine.inOut'
+						});
+					});
+					
+					// Hero animations
+					var heroTitle = document.querySelector('.hero-title');
+					var heroSubtitle = document.querySelector('.hero-subtitle');
+					var heroBadge = document.querySelector('.hero-badge');
+					
+					if(heroTitle){
+						gs.fromTo(heroTitle, 
+							{opacity: 0, y: 50, scale: 0.8},
+							{opacity: 1, y: 0, scale: 1, duration: 1, ease: 'back.out(1.7)', delay: 0.3}
+						);
+					}
+					
+					if(heroSubtitle){
+						gs.fromTo(heroSubtitle,
+							{opacity: 0, x: -30},
+							{opacity: 1, x: 0, duration: 0.8, ease: 'power3.out', delay: 0.6}
+						);
+					}
+					
+					if(heroBadge){
+						gs.fromTo(heroBadge,
+							{opacity: 0, scale: 0, rotation: -180},
+							{opacity: 1, scale: 1, rotation: 0, duration: 0.8, ease: 'elastic.out(1,0.5)', delay: 0.9}
+						);
+						gs.to(heroBadge, {
+							scale: 1.05,
+							duration: 1.5,
+							repeat: -1,
+							yoyo: true,
+							ease: 'sine.inOut',
+							delay: 1.5
+						});
+					}
+					
+					// Skills cards animation
+					var skillCards = document.querySelectorAll('.skill-card');
+					gs.fromTo(skillCards,
+						{opacity: 0, y: 50, rotationX: 90},
+						{opacity: 1, y: 0, rotationX: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out', delay: 1.2, onComplete: function(){
+							// Animate skill bars
+							skillCards.forEach(function(card){
+								var bar = card.querySelector('.skill-bar');
+								if(bar){
+									var level = bar.getAttribute('data-level');
+									gs.to(bar, {
+										width: level + '%',
+										duration: 1.5,
+										ease: 'power2.out',
+										delay: 0.3
+									});
+								}
+							});
+						}}
+					);
+					
+					// Project cards animation
+					var projectCards = document.querySelectorAll('.project-card');
+					gs.fromTo(projectCards,
+						{opacity: 0, scale: 0.5, rotation: -15},
+						{opacity: 1, scale: 1, rotation: 0, duration: 1, stagger: 0.2, ease: 'back.out(1.7)', delay: 1.8}
+					);
+					
+					// Add hover effects to project cards
+					projectCards.forEach(function(card){
+						card.addEventListener('mouseenter', function(){
+							gs.to(card, {scale: 1.05, y: -10, duration: 0.3, ease: 'power2.out'});
+							var glow = card.querySelector('.project-glow');
+							if(glow) gs.to(glow, {opacity: 1, scale: 1.2, duration: 0.3});
+						});
+						card.addEventListener('mouseleave', function(){
+							gs.to(card, {scale: 1, y: 0, duration: 0.3, ease: 'power2.out'});
+							var glow = card.querySelector('.project-glow');
+							if(glow) gs.to(glow, {opacity: 0, scale: 1, duration: 0.3});
+						});
+					});
+					
+					// Stats counter animation
+					var stats = document.querySelectorAll('.stat-number');
+					stats.forEach(function(stat){
+						var target = parseInt(stat.getAttribute('data-target'));
+						var obj = {value: 0};
+						gs.to(obj, {
+							value: target,
+							duration: 2,
+							ease: 'power2.out',
+							delay: 2.5,
+							onUpdate: function(){
+								stat.textContent = Math.round(obj.value);
+							}
+						});
+					});
+					
+					// CTA section animation
+					var ctaSection = document.querySelector('.cta-section');
+					if(ctaSection){
+						gs.fromTo(ctaSection,
+							{opacity: 0, y: 30},
+							{opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 3}
+						);
+					}
+					
+					var ctaButton = document.querySelector('.cta-button');
+					if(ctaButton){
+						gs.fromTo(ctaButton,
+							{opacity: 0, scale: 0},
+							{opacity: 1, scale: 1, duration: 0.6, ease: 'elastic.out(1,0.5)', delay: 3.5}
+						);
+						ctaButton.addEventListener('mouseenter', function(){
+							gs.to(ctaButton, {scale: 1.1, rotation: 5, duration: 0.3});
+						});
+						ctaButton.addEventListener('mouseleave', function(){
+							gs.to(ctaButton, {scale: 1, rotation: 0, duration: 0.3});
+						});
+					}
+					
+					// Scroll-triggered animations
+					var observerOptions = {
+						threshold: 0.2,
+						rootMargin: '0px 0px -100px 0px'
+					};
+					
+					var observer = new IntersectionObserver(function(entries){
+						entries.forEach(function(entry){
+							if(entry.isIntersecting){
+								gs.to(entry.target, {
+									opacity: 1,
+									y: 0,
+									duration: 0.8,
+									ease: 'power2.out'
+								});
+								observer.unobserve(entry.target);
+							}
+						});
+					}, observerOptions);
+					
+					// Observe sections
+					document.querySelectorAll('section').forEach(function(section){
+						gs.set(section, {opacity: 0, y: 30});
+						observer.observe(section);
+					});
+				}
+				
+				if(document.readyState === 'loading'){
+					document.addEventListener('DOMContentLoaded', initAnimations);
+				} else {
+					setTimeout(initAnimations, 100);
+				}
+			})();
+			</script>
+			<script src="blackjack.js" defer></script>
+<script src="script.js" defer></script>
+	</body>
+</html>
+

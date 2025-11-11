@@ -1,0 +1,839 @@
+/* Basic portfolio styles */
+:root{
+  /* Reassigned palette (same hex values, different roles)
+     - --bg: slightly lighter dark for depth
+     - --card: darkest surface
+     - --muted: soft text
+     - --accent: subtle highlight
+     - --txt: vivid accent for emphasis
+  */
+  --bg: #2A2B2E;   /* keep for overall background */
+  --card: #5A5A66; /* keep as surface but used darker via opacity in components */
+  --muted: #A4C2A8;/* use as muted text and subtle details */
+  --accent: #ACEB98;/* calmer accent */
+  --txt: #87FF65;  /* brighter primary text for emphasis */
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+  background: var(--bg); /* solid background to avoid footer/grey band */
+  color:var(--txt);
+  -webkit-font-smoothing:antialiased;
+}
+/* Make sure Bootstrap doesn't override our text colors */
+body, main, h1, h2, h3, h4, p, a, li { color: inherit; }
+main, h1, h2, h3, h4 { color: var(--txt); }
+p, li, a { color: var(--muted); }
+.container{max-width:900px;margin:0 auto;padding:24px}
+.site-header{background:rgba(255,255,255,0.02);backdrop-filter:blur(4px)}
+.site-header .container{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:0;
+  min-height:120px;
+  height:120px;
+  position:relative;
+  padding:16px 24px;
+}
+.logo{margin:0;}
+
+/* Header content layout - logo/buttons on left, blackjack on right */
+.header-content{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  width:100%;
+  gap:16px;
+  flex-wrap:nowrap;
+  min-height:88px;
+  height:88px;
+}
+
+.header-left{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  height:100%;
+  gap:12px;
+}
+
+.header-left nav{
+  margin-top:0;
+}
+/* Ensure header and logo do not use CSS transitions (keep header static) */
+header.site-header, .site-header .logo, .logo {
+  transition: none !important;
+  -webkit-transition: none !important;
+}
+/* Unified logo styling across all pages */
+.logo{
+  font-family: 'Inter', 'Segoe UI', Roboto, system-ui, -apple-system, 'Helvetica Neue', Arial;
+  font-size: 1.6rem; /* consistent size across all screen sizes */
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: var(--txt);
+  margin:8px 0;
+}
+
+/* Force consistent header sizing across pages (overrides Bootstrap and page-specific differences) */
+.site-header{ 
+  padding:0; 
+  min-height:120px;
+  height:120px;
+}
+.site-header .logo{ 
+  line-height:1; 
+  display:inline-block; 
+  font-size: 1.6rem; 
+  margin:0;
+}
+.header-left nav{ 
+  margin-top:0;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:6px 10px;
+  border-radius:8px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.03);
+}
+.header-left nav a{ 
+  font-size:0.95rem; 
+  margin-left:0;
+}
+nav a{
+  color:var(--muted);
+  text-decoration:none;
+  margin-left:0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+nav a:hover{
+  color: var(--txt);
+  transform: translateY(-2px);
+}
+
+nav a::after{
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after{
+  width: 100%;
+}
+/* Navigation box around links */
+.site-header{ position: relative; }
+.site-header .nav-toggle{display:none;background:transparent;border:0;color:var(--muted);font-size:22px;cursor:pointer;padding:6px}
+/* Animated Background */
+.animated-bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-circle{
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.6;
+}
+
+.circle-1{
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #87FF65, #ACEB98);
+  top: 10%;
+  left: 10%;
+}
+
+.circle-2{
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(135deg, #ACEB98, #87FF65);
+  top: 60%;
+  right: 15%;
+}
+
+.circle-3{
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, rgba(172,235,152,0.8), rgba(135,255,101,0.6));
+  bottom: 20%;
+  left: 20%;
+}
+
+.circle-4{
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(135deg, rgba(135,255,101,0.7), rgba(164,194,168,0.5));
+  top: 30%;
+  right: 30%;
+}
+
+/* Hero Section */
+.hero{
+  padding: 80px 0;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero-content{
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title{
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 20px;
+  background: linear-gradient(135deg, #87FF65, #ACEB98, #87FF65);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift{
+  0%, 100%{ background-position: 0% 50%; }
+  50%{ background-position: 100% 50%; }
+}
+
+.hero-subtitle{
+  font-size: 1.5rem;
+  color: var(--muted);
+  margin: 0 0 30px;
+}
+
+/* Section Styles */
+section{
+  position: relative;
+  z-index: 1;
+  margin: 60px 0;
+}
+
+.section-title{
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 0 0 40px;
+  color: var(--txt);
+  font-weight: 700;
+}
+
+/* Skills Section */
+.skills-section{
+  padding: 60px 0;
+}
+
+.skills-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.skill-card{
+  background: rgba(255,255,255,0.03);
+  border: 2px solid rgba(172,235,152,0.2);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(172,235,152,0.1), transparent);
+  transition: left 0.5s;
+}
+
+.skill-card:hover::before{
+  left: 100%;
+}
+
+.skill-card:hover{
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(172,235,152,0.2);
+}
+
+.skill-icon{
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.skill-name{
+  font-size: 1.1rem;
+  color: var(--txt);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.skill-level{
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-bar{
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), #87FF65);
+  border-radius: 4px;
+  transition: width 1.5s ease;
+}
+
+/* Projects Section */
+.projects-section{
+  padding: 60px 0;
+}
+
+.projects-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-card{
+  position: relative;
+  background: rgba(255,255,255,0.03);
+  border: 2px solid rgba(172,235,152,0.2);
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.project-glow{
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(172,235,152,0.3), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.project-number{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(172,235,152,0.1);
+  line-height: 1;
+}
+
+.project-title{
+  font-size: 1.8rem;
+  color: var(--txt);
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+
+.project-desc{
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.project-tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag{
+  padding: 6px 12px;
+  background: rgba(172,235,152,0.1);
+  border: 1px solid rgba(172,235,152,0.3);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+/* Stats Section */
+.stats-section{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  padding: 60px 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stat-item{
+  text-align: center;
+  padding: 32px;
+  background: rgba(255,255,255,0.03);
+  border: 2px solid rgba(172,235,152,0.2);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover{
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(172,235,152,0.2);
+}
+
+.stat-number{
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #87FF65, #ACEB98);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label{
+  font-size: 1rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* CTA Section */
+.cta-section{
+  padding: 80px 0;
+  text-align: center;
+}
+
+.cta-content{
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px;
+  background: linear-gradient(135deg, rgba(172,235,152,0.1), rgba(135,255,101,0.1));
+  border: 2px solid rgba(172,235,152,0.3);
+  border-radius: 20px;
+}
+
+.cta-title{
+  font-size: 2.5rem;
+  color: var(--txt);
+  margin: 0 0 20px;
+  font-weight: 700;
+}
+
+.cta-text{
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin: 0 0 32px;
+  line-height: 1.6;
+}
+
+.cta-button{
+  display: inline-block;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--accent), #87FF65);
+  color: var(--bg);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(172,235,152,0.3);
+}
+
+.cta-button:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(172,235,152,0.5);
+}
+
+.hero{padding:48px 0}
+.hero h2{margin:0 0 8px;font-size:28px}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{
+  background:var(--card);
+  padding:16px;
+  border-radius:8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.site-footer{padding:24px 0;color:var(--muted);text-align:center}
+/* Hide the site footer as requested */
+.site-footer{display:none}
+/* About page specific styles */
+.about-page .about-article{
+  position:relative;
+  max-width: 100%;
+}
+.about-avatar{
+  float:left;
+  width:25vw; /* roughly a quarter of the viewport */
+  max-width:240px;
+  height:25vw;
+  max-height:240px;
+  background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(0,0,0,0.05));
+  border:4px solid rgba(255,255,255,0.03);
+  margin:0 20px 12px 0;
+  border-radius:8px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.35);
+}
+.about-avatar::after{
+  content:'';
+  display:block;
+  width:100%;
+  height:100%;
+  background:conic-gradient(var(--accent), transparent 40% , var(--card));
+  border-radius:6px;
+}
+
+/* Note: initial hidden state for about elements is set at runtime by GSAP to avoid hiding content when JS isn't available */
+
+/* Ensure text wraps nicely around the avatar */
+.about-article p{line-height:1.6;color:var(--muted)}
+.about-article h2{margin-top:0;color:var(--txt)}
+
+/* Center the About heading and add a right-aligned small box that text wraps around */
+.about-title{ 
+  text-align:center; 
+  margin-top:8px; 
+  margin-bottom: 1.5rem;
+  color: var(--txt);
+  font-size: 2rem;
+}
+.about-sidebox{
+  float:right;
+  width:100px;
+  height:100px;
+  margin:12px 0 12px 16px; /* space on left so text wraps nicely */
+  background:linear-gradient(180deg,var(--card),rgba(0,0,0,0.08));
+  border:3px solid rgba(255,255,255,0.03);
+  border-radius:6px;
+}
+
+/* Use shape-outside so text conforms to the box edge and ensure floats don't collapse the parent */
+.about-sidebox{
+  -webkit-shape-outside: inset(0);
+  shape-outside: inset(0);
+}
+
+/* Clearfix so the article contains floats properly */
+.about-article::after{
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* About page bottom-right filler box (image placeholder) */
+.about-filler{
+  position: fixed !important;
+  width: 250px;
+  height: 250px;
+  max-width: 250px;
+  max-height: 250px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  border: 3px solid rgba(255,255,255,0.03);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  z-index: 1000 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-weight: 600;
+  text-align: center;
+  padding: 12px;
+  bottom: 20px !important;
+  right: 20px !important;
+  top: auto !important;
+  left: auto !important;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.about-filler.hidden{ opacity: 0; pointer-events: none; visibility: hidden; }
+
+/* Ensure about content doesn't overlap with image */
+.about-article{
+  padding-right: 280px;
+  padding-bottom: 280px;
+  min-height: 100vh;
+}
+
+@media (max-width: 900px){
+  .about-article{
+    padding-right: 0;
+    padding-bottom: 280px;
+  }
+}
+
+@media (max-width: 600px){
+  .about-filler{
+    width: 200px;
+    height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+    bottom: 10px;
+    right: 10px;
+  }
+  .about-article{
+    padding-bottom: 230px;
+  }
+}
+
+/* Tighter paragraph spacing and wrap behavior */
+.about-article p{line-height:1.6;color:var(--muted);margin:0 0 1rem 0}
+/* Specific spacing tweaks for About page paragraphs */
+.about-article p:last-of-type{margin-bottom:0.25rem} /* reduce gap after "For more details..." */
+.about-article p:nth-of-type(2){margin-bottom:2.25rem} /* increase gap after the 2nd paragraph */
+
+/* Accessibility utility */
+.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+@media (max-width:600px){
+  .site-header .container{
+    min-height:120px;
+    height:auto;
+    padding:16px 24px;
+  }
+  .site-header{
+    min-height:120px;
+    height:auto;
+  }
+  .header-content{
+    min-height:auto;
+    height:auto;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+  }
+  .header-left{
+    width:100%;
+  }
+  .nav-toggle{display:none !important}
+  .about-avatar{float:none;width:100%;height:auto;max-width:100%;margin:0 0 16px 0}
+  .about-sidebox{float:none;margin:12px 0}
+}
+
+/* Hide the left-side avatar on wide/extended layouts per user request */
+@media (min-width:700px){
+  .about-avatar{ display: none !important; }
+}
+
+/* BlackJack Game Styles */
+.blackjack-container{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  font-size:0.75rem;
+}
+
+.bj-title{
+  color:var(--txt);
+  font-size:0.8rem;
+  font-weight:700;
+  text-align:center;
+  margin-bottom:2px;
+}
+
+.bj-controls{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.bj-hands{
+  display:flex;
+  gap:8px;
+  margin-right:4px;
+}
+
+.bj-hand{
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+
+.bj-label{
+  color:var(--muted);
+  font-size:0.65rem;
+  font-weight:600;
+}
+
+.bj-cards{
+  display:flex;
+  gap:2px;
+  flex-wrap:wrap;
+  max-width:140px;
+}
+
+.bj-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.15);
+  color:var(--txt);
+  font-size:0.6rem;
+  padding:2px 4px;
+  border-radius:3px;
+  min-width:16px;
+  text-align:center;
+  font-weight:600;
+}
+
+.bj-card.hidden{
+  background:rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.3);
+}
+
+.bj-wallet{
+  color:var(--accent);
+  font-size:0.7rem;
+  font-weight:600;
+  margin-right:4px;
+}
+
+.bj-bet-area{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  margin-right:4px;
+}
+
+.bj-controls .bj-wallet{
+  margin-right:4px;
+}
+
+.bj-input{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  color:var(--txt);
+  font-size:0.65rem;
+  padding:2px 4px;
+  border-radius:3px;
+  width:40px;
+  text-align:center;
+}
+
+.bj-input:focus{
+  outline:none;
+  border-color:rgba(172,235,152,0.3);
+}
+
+.bj-score{
+  color:var(--muted);
+  font-size:0.7rem;
+  margin-right:8px;
+}
+
+.bj-btn{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  color:var(--txt);
+  padding:4px 8px;
+  border-radius:4px;
+  font-size:0.65rem;
+  cursor:pointer;
+  transition:all 0.2s ease;
+  white-space:nowrap;
+}
+
+.bj-btn:hover{
+  background:rgba(255,255,255,0.1);
+  border-color:rgba(255,255,255,0.2);
+}
+
+.bj-btn:disabled{
+  opacity:0.4;
+  cursor:not-allowed;
+}
+
+.bj-btn.new-game{
+  background:rgba(172,235,152,0.1);
+  border-color:rgba(172,235,152,0.3);
+}
+
+.bj-btn.new-game:hover{
+  background:rgba(172,235,152,0.2);
+}
+
+.bj-btn.reset-btn{
+  background:rgba(255,107,101,0.1);
+  border-color:rgba(255,107,101,0.3);
+}
+
+.bj-btn.reset-btn:hover{
+  background:rgba(255,107,101,0.2);
+}
+
+/* Responsive: hide blackjack game on small screens */
+@media (max-width:700px){
+  .blackjack-container{ display:none; }
+}
+
+/* Contact grid styles */
+.contact-grid{display:grid;grid-template-columns:1fr 2fr 1fr;gap:12px;margin-top:20px}
+.grid-box{display:flex;align-items:center;justify-content:center;min-height:72px;border-radius:8px;text-decoration:none;background:var(--card);color:var(--txt);font-weight:600}
+.grid-box.small{padding:12px}
+.grid-box.wide{padding:12px}
+.grid-box:hover{box-shadow:0 6px 16px rgba(0,0,0,0.35);transform:translateY(-2px);transition:all 120ms ease}
+
+/* Make text use the green palette specifically */
+.contact-box, .contact-info, .contact-grid, .grid-box{color:var(--txt)}
+
+/* Contact panel (boxed contact details) */
+.contact-panel{max-width:520px;margin:24px auto;background:var(--card);padding:20px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.4)}
+.contact-panel h2{margin-top:0;color:var(--txt);text-align:center}
+.contact-panel .contact-info{color:var(--muted);line-height:1.8}
+
+/* Make the contact panel background pure black and tweak contrast */
+.contact-panel{background:#000;border:1px solid rgba(255,255,255,0.04);box-shadow:0 10px 36px rgba(0,0,0,0.6)}
+.contact-panel a{color:var(--txt)}
+
+@media (max-width:700px){
+  .contact-grid{grid-template-columns:1fr;}
+}
+#rl-rank:hover{
+    width: 270px;
+}
+/* Page reveal utility: hide everything except header/logo until JS shows it */
+.page-content { 
+  opacity: 1; 
+  visibility: visible; 
+  transform: translateY(0); 
+  transition: opacity 520ms ease, transform 520ms ease, visibility 0s linear 520ms; 
+  position: relative;
+  z-index: 1;
+}
+.page-content.visible { opacity: 1; visibility: visible; transform: translateY(0); transition-delay: 0s; }
+/* Ensure header/logo remain visible always */
+.site-header, .logo { opacity: 1 !important; visibility: visible !important; z-index: 1000 !important; }

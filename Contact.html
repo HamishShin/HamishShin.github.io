@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Contact</title>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="header-left">
+                        <h1 class="logo">Hamish Shin</h1>
+                        <nav>
+                            <a href="About.html">About</a>
+                            <a href="Contact.html">Contact</a>
+                            <a href="home.html">Home</a>
+                        </nav>
+                    </div>
+                    <div id="blackjack-game" class="blackjack-container">
+                        <div class="bj-content">
+                            <div class="bj-title">BlackJack</div>
+                            <div class="bj-hands">
+                                <div class="bj-hand">
+                                    <span class="bj-label">P:</span>
+                                    <div id="bj-player-cards" class="bj-cards"></div>
+                                </div>
+                                <div class="bj-hand">
+                                    <span class="bj-label">D:</span>
+                                    <div id="bj-dealer-cards" class="bj-cards"></div>
+                                </div>
+                            </div>
+                            <div class="bj-controls">
+                                <div class="bj-wallet">$<span id="bj-wallet">100</span></div>
+                                <div class="bj-bet-area">
+                                    <span class="bj-label">Bet:</span>
+                                    <input type="text" id="bj-bet-amount" class="bj-input" value="10" size="3">
+                                </div>
+                                <button id="bj-hit" class="bj-btn">Hit</button>
+                                <button id="bj-stand" class="bj-btn">Stand</button>
+                                <button id="bj-new-game" class="bj-btn new-game">Deal</button>
+                            </div>
+                        </div>
+                        <button id="bj-reset" class="bj-btn reset-btn">Start Over</button>
+                    </div>
+                </div>
+                <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            </div>
+        </header>
+
+    <main class="container page-content">
+            
+
+                    <!-- Contact panel: boxed area with contact details -->
+                    <section class="contact-links">
+                        <div class="contact-panel">
+                            <h2>Contact Me</h2>
+                            <div class="contact-info">
+                                <div><strong>Email:</strong> <a href="mailto:your.email@example.com">Shin27H@ncssm.edu</a></div>
+                                <div><strong>Phone:</strong> <a href="tel:+1234567890">+1 (910) 975-2500</a></div>
+                                <div><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a></div>
+                            </div>
+                        </div>
+                    </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">© <span id="year"></span> Your Name</div>
+        </footer>
+
+        <script>
+            // Reveal page content after DOM is ready to avoid initial flash
+            (function(){
+                function reveal(){
+                    var el = document.querySelector('.page-content');
+                    if(!el) return;
+                    // Use RAF to ensure paint and avoid flash-of-unstyled-content
+                    requestAnimationFrame(function(){
+                        el.classList.add('visible');
+                    });
+                }
+                if(document.readyState === 'loading'){
+                    document.addEventListener('DOMContentLoaded', reveal);
+                } else {
+                    reveal();
+                }
+            })();
+        </script>
+        <script src="blackjack.js" defer></script>
+        <script src="script.js" defer></script>
+    </body>
+</html>

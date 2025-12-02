@@ -51,19 +51,28 @@
 		</header>
 
 		<!-- Bottom-right image placeholder - outside containers to ensure fixed positioning -->
-		<div id="aboutFiller" class="about-filler" role="img" aria-label="About image placeholder">Image placeholder</div>
+		<div id="aboutFiller" class="about-filler" role="img" aria-label="About image placeholder"></div>
 		
-		<main class="container about-page page-content">
-			<article class="about-article" aria-live="polite">
-				<!-- About content -->
-				<h2 class="about-title">About Me</h2>
-				<p>Welcome to my portfolio! I'm a passionate developer who loves creating engaging digital experiences.</p>
-				<p>With expertise in modern web technologies, I focus on building clean, efficient, and user-friendly applications. My work combines technical skill with creative problem-solving to deliver impactful solutions.</p>
-				<p>I'm constantly learning and exploring new technologies to stay at the forefront of web development. Whether it's front-end design, back-end architecture, or full-stack solutions, I approach each project with enthusiasm and attention to detail.</p>
-				<p>When I'm not coding, you can find me exploring new frameworks, contributing to open-source projects, or sharing knowledge with the developer community.</p>
-				<p>Feel free to explore my projects and reach out if you'd like to collaborate or discuss opportunities.</p>
-			</article>
-		</main>
+			<main class="container about-page page-content">
+				<!-- Decorative elements only (remove Home-like sections) -->
+				<div class="about-decor" aria-hidden="true">
+					<div class="deco deco-circle deco-1"></div>
+					<div class="deco deco-circle deco-2"></div>
+					<div class="deco deco-rect deco-3"></div>
+					<div class="deco deco-blob deco-4"></div>
+					<div class="deco deco-lines deco-5"></div>
+				</div>
+
+				<article class="about-article" aria-live="polite">
+					<!-- About content -->
+					<h2 class="about-title">About Me</h2>
+					<p>Welcome to my portfolio! I'm a passionate developer who loves creating engaging digital experiences.</p>
+					<p>With expertise in modern web technologies, I focus on building clean, efficient, and user-friendly applications. My work combines technical skill with creative problem-solving to deliver impactful solutions.</p>
+					<p>I'm constantly learning and exploring new technologies to stay at the forefront of web development. Whether it's front-end design, back-end architecture, or full-stack solutions, I approach each project with enthusiasm and attention to detail.</p>
+					<p>When I'm not coding, you can find me exploring new frameworks, contributing to open-source projects, or sharing knowledge with the developer community.</p>
+					<p>Feel free to explore my projects and reach out if you'd like to collaborate or discuss opportunities.</p>
+				</article>
+			</main>
 
 		<footer class="site-footer">
 			<div class="container">© <span id="year"></span> Hamish Shin</div>
@@ -94,6 +103,8 @@
 						document.addEventListener('DOMContentLoaded', reveal);
 					} else { reveal(); }
 				})();
+
+
 
 				// Position the about filler box at bottom right with GSAP animation
 				(function(){
